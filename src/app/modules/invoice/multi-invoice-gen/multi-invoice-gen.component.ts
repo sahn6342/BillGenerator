@@ -18,8 +18,12 @@ export class MultiInvoiceGenComponent implements OnInit {
     this.initMultiInvoiceForm();
   }
 
+  get multiInvoiceFormForHtml() {
+    return this.multiInvoiceForm as any;
+  }
+
   getCustomers() {
-    this.httpClient.get('http://localhost:6363/user/customers').subscribe((data: any) => {
+    this.httpClient.get('http://localhost:6363/api/customers').subscribe((data: any) => {
       this.customersList = data.data;
       if (data.data.length) {
         this.genrateCustomersFormControl();
@@ -50,16 +54,18 @@ export class MultiInvoiceGenComponent implements OnInit {
     });
     console.log(this.multiInvoiceForm)
   }
+
   submit() {
     this.validateForm(this.multiInvoiceForm)
     if (this.multiInvoiceForm.invalid) {
       return;
     }
     console.log(this.multiInvoiceForm);
-    this.httpClient.post('http://localhost:6363/user/invoices', this.multiInvoiceForm.value).subscribe((res) => {
+    this.httpClient.post('http://localhost:6363/api/invoices', this.multiInvoiceForm.value).subscribe((res) => {
       console.log(res)
     });
   }
+
   validateForm(control: AbstractControl) {
     if (control.hasOwnProperty('controls')) {
       control.markAsTouched({ onlySelf: true });

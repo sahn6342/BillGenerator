@@ -15,14 +15,14 @@ export class CustomerListComponent implements OnInit {
   }
 
   getCustomers() {
-    this.httpClient.get('http://localhost:6363/user/customers').subscribe((data: any) => {
+    this.httpClient.get('http://localhost:6363/api/customers').subscribe((data: any) => {
       this.customersList = data.data;
       console.log(this.customersList);
     });
   }
 
   delete(id) {
-    this.httpClient.post('http://localhost:6363/user/deleteCustomer', { id }).subscribe((data) => {
+    this.httpClient.post('http://localhost:6363/api/deleteCustomer', { id }).subscribe((data) => {
       this.getCustomers();
     }, (err) => {
       console.log(err);

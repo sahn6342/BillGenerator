@@ -12,14 +12,14 @@
             <div class="form-group col-md-6">
                 <label for="billingMonth">Billing month</label>
                 <input type="month" formControlName="billingMonth" class="form-control"
-                    [ngClass]="{'has-error':multiInvoiceForm.get('billingMonth').hasError('required') && multiInvoiceForm.get('billingMonth').touched}">
+                    [ngClass]="{'has-error':multiInvoiceFormForHtml.get('billingMonth').hasError('required') && multiInvoiceFormForHtml.get('billingMonth').touched}">
                 <span class="error-message"
-                    *ngIf="multiInvoiceForm.get('billingMonth').hasError('required') && multiInvoiceForm.get('billingMonth').touched">
+                    *ngIf="multiInvoiceFormForHtml.get('billingMonth').hasError('required') && multiInvoiceFormForHtml.get('billingMonth').touched">
                     <small>This field is required.</small>
                 </span>
             </div>
             <div formArrayName="customers" class="col-md-12">
-                <table class=" table" *ngIf="multiInvoiceForm.get('customers').controls.length>0">
+                <table class=" table" *ngIf="multiInvoiceFormForHtml.get('customers').controls.length>0">
                     <tr>
                         <th>Name</th>
                         <th>Address</th>
@@ -28,7 +28,7 @@
                         <th>Bottle consumption</th>
                         <th>No of dispensers</th>
                     </tr>
-                    <tr *ngFor="let customer of multiInvoiceForm.get('customers').controls;let i = index"
+                    <tr *ngFor="let customer of multiInvoiceFormForHtml.get('customers').controls;let i = index"
                         [formGroupName]="i">
                         <td><input type="text" formControlName="name"></td>
                         <td><input type="text" formControlName="address"></td>

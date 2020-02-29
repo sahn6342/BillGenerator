@@ -18,7 +18,7 @@ export class CustomerFormComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((res) => {
       if (res && res.id) {
-        this.httpClient.get('http://localhost:6363/user/customer/' + res.id).subscribe((resData: any) => {
+        this.httpClient.get('http://localhost:6363/api/customer/' + res.id).subscribe((resData: any) => {
           console.log(resData);
           const customerFormGroup = this.customerForm.get('customerFormGroup') as FormGroup;
           customerFormGroup.addControl('_id', new FormControl(resData._id));
@@ -40,7 +40,7 @@ export class CustomerFormComponent implements OnInit {
 
   save() {
     if (!this.customerId) {
-      this.httpClient.post('http://localhost:6363/user/customer', this.customerForm.value.customerFormGroup)
+      this.httpClient.post('http://localhost:6363/api/customer', this.customerForm.value.customerFormGroup)
         .subscribe((res: any) => {
           console.log(res);
           if (res.success) {
@@ -50,7 +50,7 @@ export class CustomerFormComponent implements OnInit {
           }
         });
     } else {
-      this.httpClient.put('http://localhost:6363/user/customer', this.customerForm.value.customerFormGroup)
+      this.httpClient.put('http://localhost:6363/api/customer', this.customerForm.value.customerFormGroup)
         .subscribe((res: any) => {
           console.log(res);
           if (res.success) {
