@@ -1,4 +1,0 @@
-{
-    "port": 6363,
-    "mongo": "mongodb://devlopment:devlopment1@ds211259.mlab.com:11259/billgen"
-}
